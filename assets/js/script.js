@@ -1,11 +1,18 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
-var pwdLen = 0;
-var upBool = false;
-var lwBool = false;
-var spBool = false;
-var nmBool = false;
+//Define variables for Modal form
+let pwdLen = 0;
+let upBool = false;
+let lwBool = false;
+let spBool = false;
+let nmBool = false;
+
+//Define variables to determine if character selection is used
+let upUsed = false;
+let lwUsed = false;
+let spUsed = false;
+let nmUsed = false;
 
 // Function to generate random password based on use input
 function generatePassword() {
@@ -21,44 +28,66 @@ function generatePassword() {
   let i = 0;
   console.log(pwdLen);
   while (i < pwdLen)  {
+    //Flipping coin to see if the next character sequence is Upper Case
     rndNum = Math.floor((Math.random() * 2) + 1);
     if ((upBool) && (rndNum == 1)) {
+      //add character from random postion in Upper string
       passwd = passwd + strUpCase.charAt(Math.floor((Math.random() * 26) + 1)-1);
+      upUsed = true;
       i++;
     }
 
+    //Flipping coin to see if the next character sequence is Lower Case
     rndNum = Math.floor((Math.random() * 2) + 1);
     if ((lwBool) && (rndNum == 1)) {
-      passwd = passwd + strLowCase.charAt(Math.floor((Math.random() * 26) + 1)-1);      ;
+      //add character from random postion in Lower string
+      passwd = passwd + strLowCase.charAt(Math.floor((Math.random() * 26) + 1)-1);      
+      lwUsed = true;
       i++;
     }
 
+    //Flipping coin to see if the next character sequence is Special
     rndNum = Math.floor((Math.random() * 2) + 1);
     if ((spBool)  && (rndNum == 1)) {
+      //add character from random postion in Special string
       passwd = passwd + strSpecial.charAt(Math.floor((Math.random() * 20) + 1)-1);
+      spUsed = true;
       i++;
     }
     
+    //Flipping coin to see if the next character sequence is Number
     rndNum = Math.floor((Math.random() * 2) + 1);
     if ((nmBool)  && (rndNum == 1)) {
+      //add character from random postion in Number string
       passwd = passwd + strNumbers.charAt(Math.floor((Math.random() * 10) + 1)-1);
+      nmUsed = true;
       i++;
     }
   }
 
-  return passwd;
+  // Verify if the proper character types are used
+  if ((nmBool == nmUsed) && (spBool == spUsed) && (upBool == upUsed) && (lwBool == lwUsed)) {
+    return passwd;
+  } else { // reset and rerun generation
+    console.log(passwd + "error");
+    upUsed = false; lwUsed = false; spUsed = false; nmUsed = false;
+    let errPassword = generatePassword();
+    return errPassword;
+  }
+  
 }
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
+  let password = generatePassword();
+  let passwordText = document.querySelector("#password");
 
   passwordText.value = password;
 
 }
 
 // Add event listener to generate button
+// Removed this to use the Modal form
 // generateBtn.addEventListener("click", writePassword);
 
 
@@ -86,6 +115,7 @@ sbmt.onclick = function() {
   spBool = document.getElementById("special").checked;
   nmBool = document.getElementById("numbers").checked;
 
+  //Check the request length and that at least one character option is selected
   if ((pwdLen >= 8) && (pwdLen <= 128) && (upBool || lwBool || spBool || nmBool)) {
     modal.style.display = "none";
     writePassword();
