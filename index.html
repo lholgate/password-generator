@@ -26,9 +26,30 @@
         </div>
         <div class="card-footer">
           <button id="generate" class="btn">Generate Password</button>
+         
+        </div>
+        <!-- Modal Box -->
+        <div id="myModal" class="modal">
+          <!-- Modal Contet -->
+          <div class="modal-content">
+            <!-- <span class="close">&times;</span> -->
+            <label for="pwd_len">Length of password to generate (8 to 128 characters).</label><br>
+            <input type="text" id="pwdlen" name="pwd_len"><br>
+            <input type="checkbox" id="upper" name="upper" value="TRUE">
+            <label for="upper"> Upper Case Letters</label><br>
+            <input type="checkbox" id="lower" name="lower" value="TRUE">
+            <label for="Lower"> Lower Case Letters</label><br>
+            <input type="checkbox" id="special" name="special" value="TRUE">
+            <label for="Lower"> Include Special Characters</label><br>
+            <input type="checkbox" id="numers" name="numbers" value="TRUE">
+            <label for="numbers"> Include Numbers</label><br><br>
+
+            <input type="submit" class="submit" value="Submit">
+          </div>
         </div>
       </div>
     </div>
+    
     <script src="./assets/js/script.js"></script>
   </body>
 </html>
