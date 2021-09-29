@@ -35,14 +35,11 @@ THEN the password is either displayed in an alert or written to the page
 The following image demonstrates the application functionality:
 
 ![An app window with the label Password Generator, an input field labeled Your Secure Password, and a Generate Password button.](./assets/images/03-javascript-homework-demo.png)
-<<<<<<< HEAD
 
 ![An image of the selection criteria for password generation.](./assets/images/criteria_selection.png)
 
 ![An image of a generated password.](./assets/images/password_generated.png)
 
-=======
->>>>>>> e0d4612782abbe0e98c4a0b3efdf4b1737169ccc
 
 ## Review
 
